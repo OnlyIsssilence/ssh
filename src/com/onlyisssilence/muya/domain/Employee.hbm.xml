@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class table="employee" name="com.onlyisssilence.muya.domain.Employee">
+        <id name="eid" type="java.lang.Integer">
+            <column name="eid"/>
+            <generator class="native"/>
+        </id>
+
+        <property name="ename" type="java.lang.String">
+            <column name="ename" length="10"/>
+        </property>
+
+        <property name="sex" type="java.lang.String">
+            <column name="sex"/>
+        </property>
+
+        <property name="eno" type="java.lang.String">
+            <column name="eno" length="10"/>
+        </property>
+
+        <property name="birthday" type="java.util.Date">
+            <column name="birthday"/>
+        </property>
+
+        <property name="joinDate" type="java.util.Date">
+            <column name="joinDate"/>
+        </property>
+
+        <property name="username" type="java.lang.String">
+            <column name="username"/>
+        </property>
+
+        <property name="password" type="java.lang.String">
+            <column name="password"/>
+        </property>
+
+        <!--配置关联关系 name:本类中属性的名字 class：name属性对应对象的全路径 column:name属性对应对象的外键名称
+        与department属性相对应-->
+        <many-to-one name="department" class="com.onlyisssilence.muya.domain.Department" column="dno"/>
+    </class>
+
+</hibernate-mapping>

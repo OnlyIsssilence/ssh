@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class table="department" name="com.onlyisssilence.muya.domain.Department">
+        <id name="did" type="java.lang.Integer">
+            <column name="did"/>
+            <generator class="native"/>
+        </id>
+
+        <property name="dname" type="java.lang.String">
+            <column name="dname" length="20"/>
+        </property>
+
+        <property name="ddesc" type="java.lang.Double">
+            <column name="ddesc" length="100"/>
+        </property>
+
+        <!--关联关系映射 与employee相对应-->
+        <set name="employees">
+            <key column="dno"/>
+            <one-to-many class="com.onlyisssilence.muya.domain.Employee"/>
+        </set>
+    </class>
+
+</hibernate-mapping>
