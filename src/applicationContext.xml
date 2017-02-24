@@ -3,6 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
+	<!--由spring来管理action(推荐使用这种方法，因为使用spring管理后可以"享受"spring的AOP特性)-->
+	<bean id="productAction" class="com.onlyisssilence.muya.action.ProductAction">
+		<property name="productService" ref="productService"/>
+	</bean>
+
 	<!--配置业务层的类-->
 	<bean id="productService" class="com.onlyisssilence.muya.service.ProductService">
 		<property name="produceDao" ref="productDao"/>
