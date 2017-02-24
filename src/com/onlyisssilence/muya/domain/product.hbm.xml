@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class table="product" name="com.onlyisssilence.muya.domain.Product">
+        <id name="pid" type="java.lang.Integer">
+            <column name="id"/>
+            <generator class="native"/>
+        </id>
+
+        <property name="pname" type="java.lang.String">
+            <column name="name"/>
+        </property>
+
+        <property name="price" type="java.lang.Double">
+            <column name="price"/>
+        </property>
+
+    </class>
+
+</hibernate-mapping>

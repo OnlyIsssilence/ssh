@@ -1,7 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+	   http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!--配置连接池：
+	    1.引入外部属性文件
+	    2.配置C3P0的连接池
+	    3.配置hibernate的相关属性
+	-->
+    <!--1-->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+
+    <!--2-->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.driverClass}"/>
+		<property name="jdbcUrl" value="${jdbc.url}"/>
+		<property name="user" value="${jdbc.root}"/>
+		<property name="password" value="${jdbc.password}"/>
+	</bean>
+
+
+
+    <!--3-->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <!--数据库连接池注入-->
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+
+        <!--hibernate属性设置-->
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
+
+        <property name="mappingDirectoryLocations">
+            <list>
+                <value>classpath*:/com/onlyisssilence/muya/domain</value>
+            </list>
+        </property>
+
+    </bean>
+
+
 
 	<!--由spring来管理action(推荐使用这种方法，因为使用spring管理后可以"享受"spring的AOP特性)-->
 	<bean id="productAction" class="com.onlyisssilence.muya.action.ProductAction">
