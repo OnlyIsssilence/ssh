@@ -2,12 +2,15 @@ package com.onlyisssilence.muya.service;
 
 import com.onlyisssilence.muya.dao.ProduceDao;
 import com.onlyisssilence.muya.domain.Product;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * Author: MuYa
  * Date  : 2017/2/24
  * Description:
  */
+
+@Transactional
 public class ProductService {
 
     // 业务层 注入dao

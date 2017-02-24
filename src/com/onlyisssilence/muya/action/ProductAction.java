@@ -14,6 +14,11 @@ public class ProductAction extends ActionSupport implements ModelDriven<Product>
 
     //模型驱动使用的类
     private Product product;
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
     @Override
     public Product getModel() {
         return product;

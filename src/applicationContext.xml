@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	   xmlns:context="http://www.springframework.org/schema/context"
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
 	   http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
 	   http://www.springframework.org/schema/context
-	   http://www.springframework.org/schema/context/spring-context.xsd">
+	   http://www.springframework.org/schema/context/spring-context.xsd
+	   http://www.springframework.org/schema/tx
+	   http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 	<!--配置连接池：
 	    1.引入外部属性文件
@@ -42,15 +45,20 @@
             </props>
         </property>
 
+        <!--添加映射文件-->
         <property name="mappingDirectoryLocations">
             <list>
                 <value>classpath*:/com/onlyisssilence/muya/domain</value>
             </list>
         </property>
-
     </bean>
 
+    <!--配置事物管理-->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
 	<!--由spring来管理action(推荐使用这种方法，因为使用spring管理后可以"享受"spring的AOP特性)-->
 	<bean id="productAction" class="com.onlyisssilence.muya.action.ProductAction">
@@ -63,6 +71,8 @@
 	</bean>
 
 	<!--配置持久层的类-->
-	<bean id="productDao" class="com.onlyisssilence.muya.dao.ProduceDao"/>
+	<bean id="productDao" class="com.onlyisssilence.muya.dao.ProduceDao">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
 </beans>
