@@ -14,7 +14,7 @@
 <body>
 
 <h1>保存商品标签</h1>
-<s:form action="" method="POST" namespace="/" theme="simple">
+<s:form action="product_add" method="POST" namespace="/" theme="simple">
     <table border="1" width="400">
         <tr>
             <td>商品名称</td>

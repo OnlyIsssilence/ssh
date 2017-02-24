@@ -2,6 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
-	
+
+	<!--配置业务层的类-->
+	<bean id="productService" class="com.onlyisssilence.muya.service.ProductService">
+		<property name="produceDao" ref="productDao"/>
+	</bean>
+
+	<!--配置持久层的类-->
+	<bean id="productDao" class="com.onlyisssilence.muya.dao.ProduceDao"/>
 
 </beans>

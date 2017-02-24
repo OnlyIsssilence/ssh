@@ -5,4 +5,13 @@
         "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
+
+    <package name="ssh" extends="struts-default" namespace="/">
+        
+        <action name="product_*" class="com.onlyisssilence.muya.action.ProductAction" method="{1}" ></action>
+
+
+
+
+    </package>
 </struts>
