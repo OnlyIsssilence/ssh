@@ -7,6 +7,7 @@
 --%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="java.util.*" %>
 <html>
 <head>
     <title>Title</title>
@@ -32,6 +33,21 @@
 
     </table>
 </s:form>
+
+
+<jsp:plugin type="applet" codebase="dirname" code="MyApplet.class" width="60" height="80">
+
+    <jsp:params>
+        <jsp:param name="fontcolor" value="red"/>
+        <jsp:param name="background" value="black"/>
+    </jsp:params>
+
+    <jsp:fallback>
+        Unable to initialize Java Plugin
+    </jsp:fallback>
+
+</jsp:plugin>
+
 
 
 
