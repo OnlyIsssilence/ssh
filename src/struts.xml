@@ -14,7 +14,11 @@
 
         <!--方法二(推荐)-->
         <!--action交给spring管理后只需要按名字写出即可-->
-        <action name="product_*" class="productAction" method="{1}" ></action>
+        <action name="product_*" class="productAction" method="{1}" >
+
+
+
+        </action>
 
 
 
